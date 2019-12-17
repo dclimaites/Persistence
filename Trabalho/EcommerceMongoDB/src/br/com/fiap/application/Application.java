@@ -10,13 +10,13 @@ import br.com.fiap.entity.Cliente;
 import br.com.fiap.repository.ClienteRepository;
 
 @SpringBootApplication
-@EnableMongoRepositories(basePackageClasses = Cliente.class)
+@EnableMongoRepositories(basePackageClasses = ClienteRepository.class)
 public class Application implements CommandLineRunner {
 	
 	@Autowired
 	public ClienteRepository repository;
 	
-	static void main(String[] args) {
+	public static void main(String[] args) {
 		
 		SpringApplication.run(Application.class, args);
 	}
