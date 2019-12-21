@@ -1,6 +1,10 @@
 package br.com.fiap.entity;
 
+import java.util.HashMap;
+
 import org.springframework.data.annotation.Id;
+
+import br.com.fiap.enums.TipoEndereco;
 
 public class Cliente {
 	
@@ -9,12 +13,13 @@ public class Cliente {
 	
 	private String Nome;
 	private String email;
-	
+	private HashMap<TipoEndereco, Endereco> enderecos;
 	
 	public Cliente(String nome, String email) {
 		super();
 		Nome = nome;
 		this.email = email;
+		this.enderecos = new HashMap<TipoEndereco, Endereco>();
 	}
 	
 	
@@ -35,6 +40,10 @@ public class Cliente {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public void setEndereco(TipoEndereco tipoEndereco, Endereco endereco) {
+		this.enderecos.put(tipoEndereco, endereco);
 	}
 	
 }
