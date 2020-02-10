@@ -8,13 +8,12 @@ public class Produto {
 	private String id;
 	private String descricao;
 	private double valor;
-	
+	private int quantidade;
+
 	public Produto(String descricao, double valor) {
 		setDescricao(descricao);
 		setValor(valor);
 	}
-	
-		
 	
 	public double getValor() {
 		return valor;
@@ -35,5 +34,13 @@ public class Produto {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 }

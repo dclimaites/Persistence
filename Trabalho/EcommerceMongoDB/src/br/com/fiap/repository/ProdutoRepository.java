@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import br.com.fiap.entity.Produto;
 
 public interface ProdutoRepository extends MongoRepository<Produto, String> {
-	public Produto findByNome(String descricao);
+	public Produto findByDescricao(String descricao);
 }

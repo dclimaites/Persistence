@@ -11,23 +11,23 @@ public class Cliente {
 	@Id
 	private String id;
 	
-	private String Nome;
+	private String nome;
 	private String email;
 	private HashMap<TipoEndereco, Endereco> enderecos;
 	
 	public Cliente(String nome, String email) {
 		super();
-		Nome = nome;
+		this.nome = nome;
 		this.email = email;
 		this.enderecos = new HashMap<TipoEndereco, Endereco>();
 	}
 	
-	
+
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
 	public String getEmail() {
 		return email;
