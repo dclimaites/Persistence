@@ -1,5 +1,6 @@
 package br.com.fiap.entity;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -44,5 +45,10 @@ public class Produto {
 	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	@Override
+	public String toString() {
+		return "\nProduto " + this.getDescricao() + " - R$ " + getValor() + "\nEm estoque: " + getQuantidade();
 	}
 }
