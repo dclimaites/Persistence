@@ -1,7 +1,9 @@
 package br.com.fiap.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Produto {
 	
 	@Id
@@ -10,9 +12,10 @@ public class Produto {
 	private double valor;
 	private int quantidade;
 
-	public Produto(String descricao, double valor) {
+	public Produto(String descricao, double valor, int quantidade) {
 		setDescricao(descricao);
 		setValor(valor);
+		setQuantidade(quantidade);
 	}
 	
 	public double getValor() {
@@ -39,7 +42,6 @@ public class Produto {
 	public int getQuantidade() {
 		return quantidade;
 	}
-
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}

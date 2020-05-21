@@ -12,13 +12,7 @@
 	import br.com.fiap.repository.ClienteRepository;
 
 	@SpringBootApplication
-	@EnableMongoRepositories(basePackageClasses =  {ClienteRepository.class, ProdutoRepository.class})
 	public class Application implements CommandLineRunner {
-
-		@Autowired
-		public ClienteRepository repository;
-		@Autowired
-		public ProdutoRepository repositoryProduto;
 
 		public static void main(String[] args) {
 
@@ -34,6 +28,6 @@
 
 			System.out.println("Inserindo um cliente");*/
 
-			new Gerenciador(repositoryProduto).CadastrarProduto();
+			new Gerenciador().Iniciar();
 	}
 	}
