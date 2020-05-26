@@ -1,17 +1,10 @@
 	package br.com.fiap.application;
 
-	import br.com.fiap.repository.ProdutoRepository;
-	import br.com.fiap.ui.Gerenciador;
-	import br.com.fiap.ui.GerenciadorBase;
 	import br.com.fiap.ui.GerenciadorProduto;
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.boot.CommandLineRunner;
 	import org.springframework.boot.SpringApplication;
 	import org.springframework.boot.autoconfigure.SpringBootApplication;
-	import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-
-	import br.com.fiap.entity.Cliente;
-	import br.com.fiap.repository.ClienteRepository;
 
 	import java.util.Scanner;
 
@@ -21,6 +14,7 @@
 		private static Scanner reader;
 		@Autowired
 		GerenciadorProduto produtoCommandLine = new GerenciadorProduto();
+
 
 		public static void main(String[] args) {
 			reader = new Scanner(System.in);
@@ -70,6 +64,8 @@
 						case 4:
 							produtoCommandLine.ExcluirProduto();
 							break;
+						case 5:
+
 						case 99:
 							encerrar = true;
 							break;
