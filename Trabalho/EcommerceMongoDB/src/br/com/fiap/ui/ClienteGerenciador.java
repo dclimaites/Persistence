@@ -1,7 +1,9 @@
 package br.com.fiap.ui;
 
 import br.com.fiap.entity.Cliente;
+import br.com.fiap.entity.Endereco;
 import br.com.fiap.entity.Produto;
+import br.com.fiap.enums.TipoEndereco;
 import br.com.fiap.repository.ClienteRepository;
 import br.com.fiap.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +70,7 @@ public class ClienteGerenciador extends GerenciadorBase {
         return null;
     }
 
-    private void CadastrarCliente() {
+    private Cliente CadastrarCliente() {
 
 
         int tentativas = 0;
@@ -80,12 +82,32 @@ public class ClienteGerenciador extends GerenciadorBase {
 
                 Cliente clienteCadastro = clienteRepository.findByEmail(email);
 
-                if(clienteCadastro != null)
-                {
-                    
+                if (clienteCadastro != null) {
+                    System.out.println("Usuário já cadsatrado");
+                    return clienteCadastro;
                 }
 
-                produtoRepository.save(new Produto(descricao, valorReal, quantidade));
+                clienteCadastro = new Cliente(nome, email);
+
+                String cadastrarEndereco = LerTexto("Gostaria de cadastrar algum endereço?");
+                if(cadastrarEndereco.equals("S")) {
+                    String cidade = LerTexto("Qual é o Cidade?");
+                    String bairro = LerTexto("Qual é o Bairro?");
+                    String logradouro = LerTexto("Qual é o logradouro?");
+                    String enderecoStr = LerTexto("Qual é o Endereço?");
+                    int numero = LerInteiro("Qual é o Número?");
+                    String complemento = LerTexto("Qual é o Complemento?");
+
+                    Endereco endereco = new Endereco(logradouro, numero, bairro, cidade, complemento, enderecoStr);
+
+                    ExibirTiposEndereco();
+
+                    int tipoEndereco = LerInteiro("Digite o número do tipo de endereço");
+
+                    clienteCadastro.setEndereco(TipoEndereco.values()[tipoEndereco], endereco);
+                }
+
+                clienteRepository.save(clienteCadastro);
                 System.out.println("Produto cadastrado com sucesso");
                 tentativas = 4;
             } catch (NumberFormatException e) {
@@ -99,6 +121,14 @@ public class ClienteGerenciador extends GerenciadorBase {
             }
 
         } while (tentativas <= 3);
+    }
+
+    public void ExibirTiposEndereco() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Qual é o tipo de endereço?\n");
+        for (TipoEndereco end : TipoEndereco.values()) {
+            sb.append(end.getValor() + " - " + end.name() + "\n");
+        }
     }
 
     private void AlterarCliente() {

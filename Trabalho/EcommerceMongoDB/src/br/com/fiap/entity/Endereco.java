@@ -12,7 +12,16 @@ public class Endereco {
 	private String cidade;
 	private String complemento;
 	private String endereco;
-	
+
+	public Endereco(String logradouro, int numero, String bairro, String cidade, String complemento, String endereco) {
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.complemento = complemento;
+		this.endereco = endereco;
+	}
+
 	public String getId() {
 		return Id;
 	}
