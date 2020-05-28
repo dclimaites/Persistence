@@ -24,6 +24,55 @@ public class GerenciadorProduto extends  GerenciadorBase {
         super();
     }
 
+    public int Iniciar() {
+
+        boolean encerrar = false;
+        int tentativas = 0;
+        System.out.println
+                ("Iniciado programa de estoque/compra de produtos");
+        do {
+
+            try {
+
+                int valorNumerico =  LerInteiro("\nEscolha uma opção: " +
+                        "\n1 - Cadastrar produto no estoque" +
+                        "\n2 - Listar produtos do estoque" +
+                        "\n3 - Alterar Produto no estoque" +
+                        "\n4 - Excluir produto no estoque" +
+                        "\n99 - Voltar ao menu anterior");
+
+                switch(valorNumerico) {
+                    case 1:
+                        CadastrarProduto();
+                        break;
+                    case 2:
+                        ListarProdutosEstoque();
+                        break;
+                    case 3:
+                        AlterarProduto();
+                        break;
+                    case 4:
+                        ExcluirProduto();
+                        break;
+                    case 99:
+                        return 99;
+                    default:
+                        System.out.println("Opção não existente");
+                }
+            }
+            catch(Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println(e.getStackTrace());
+
+                System.out.println(e.getMessage());
+                tentativas++;
+                if(tentativas == 3) encerrar = true;
+            }
+        }while(!encerrar);
+
+        return 999;
+    }
+
     public void CadastrarProduto() {
         double valorReal = 999999999;
         int tentativas = 0;
@@ -75,21 +124,6 @@ public class GerenciadorProduto extends  GerenciadorBase {
                     int indiceInt = Integer.parseInt(indice);
 
                     produtoParaAlterar = produtos.get(indiceInt);
-
-                    /*
-                    Optional<Produto> produtoPesquisado = produtoRepository.findById(indice);
-
-                    if(!produtoPesquisado.isPresent())
-                    {
-                        tentativas++;
-                        System.out.println("Produto não encontrado, entre com uma opção válida");
-                        continue;
-                    }
-                    else {
-                        produtoParaAlterar = produtoPesquisado.get();
-                    }
-
-                     */
                 }
 
 
@@ -149,14 +183,18 @@ public class GerenciadorProduto extends  GerenciadorBase {
 
     public List<Produto> ListarProdutosEstoque() throws IOException {
         List<Produto> produtos = produtoRepository.findAll();
+
+        ListarProdutosTela(produtos);
+
+        return produtos;
+    }
+
+    public void ListarProdutosTela(List<Produto> produtos) {
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < produtos.size(); i++) {
             sb.append("Numero " + i + produtos.get(i));
         }
-
         System.out.println(sb.toString());
-
-        return produtos;
     }
 
     public void ExcluirProduto() {

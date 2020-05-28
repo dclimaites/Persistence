@@ -1,5 +1,6 @@
 	package br.com.fiap.application;
 
+	import br.com.fiap.ui.GerenciadorPedidos;
 	import br.com.fiap.ui.GerenciadorProduto;
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.boot.CommandLineRunner;
@@ -14,7 +15,8 @@
 		private static Scanner reader;
 		@Autowired
 		GerenciadorProduto produtoCommandLine = new GerenciadorProduto();
-
+		@Autowired
+		GerenciadorPedidos pedidosCommandLine = new GerenciadorPedidos();
 
 		public static void main(String[] args) {
 			reader = new Scanner(System.in);
@@ -23,13 +25,6 @@
 
 		@Override
 		public void run(String... args) throws Exception {
-			/*// TODO Auto-generated method stub
-			repository.deleteAll();
-
-			repository.save(new Cliente("Diego Climaites", "diegoclimaites@teste.com"));
-
-			System.out.println("Inserindo um cliente");*/
-
 			boolean encerrar = false;
 			int tentativas = 0;
 			System.out.println
@@ -41,31 +36,19 @@
 					System.out.println
 							(
 									"\nEscolha uma opção: " +
-											"\n1 - Cadastrar produto no estoque" +
-											"\n2 - Listar produtos do estoque" +
-											"\n3 - Alterar Produto no estoque" +
-											"\n4 - Excluir produto no estoque" +
+											"\n1 - Abrir Estoque" +
+											"\n2 - Abrir a Loja" +
 											"\n99 - Encerrar o programa");
-
-
 
 					int valorNumerico =  Integer.parseInt(reader.nextLine());
 
 					switch(valorNumerico) {
 						case 1:
-							produtoCommandLine.CadastrarProduto();
+							produtoCommandLine.Iniciar();
 							break;
 						case 2:
 							produtoCommandLine.ListarProdutosEstoque();
 							break;
-						case 3:
-							produtoCommandLine.AlterarProduto();
-							break;
-						case 4:
-							produtoCommandLine.ExcluirProduto();
-							break;
-						case 5:
-
 						case 99:
 							encerrar = true;
 							break;
@@ -81,6 +64,7 @@
 					tentativas++;
 					if(tentativas == 3) encerrar = true;
 				}
+
 			}while(!encerrar);
 		}
 

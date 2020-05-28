@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.springframework.data.annotation.Id;
 
 import br.com.fiap.enums.TipoEndereco;
+import org.springframework.data.annotation.ReadOnlyProperty;
 
 public class Cliente {
 	
@@ -41,7 +42,9 @@ public class Cliente {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
+	public HashMap<TipoEndereco, Endereco> getEnderecos() { return this.enderecos; };
+
 	public void setEndereco(TipoEndereco tipoEndereco, Endereco endereco) {
 		this.enderecos.put(tipoEndereco, endereco);
 	}

@@ -11,6 +11,8 @@ public class Pedido {
 
     private List<Produto> itens;
 
+    private Endereco enderecoEntrega;
+
     public Pedido() {
         setItens(new ArrayList<Produto>());
     }
@@ -19,19 +21,19 @@ public class Pedido {
        this.setItens(itens);
     }
 
-    void adicionarProduto(Produto produto) {
+    public void adicionarProduto(Produto produto) {
         if(this.getItens().contains(produto))
         {
             int indice = this.getItens().indexOf(produto);
             Produto prod = this.getItens().get(indice);
-            prod.setQuantidade(prod.getQuantidade() + 1);
+            prod.setQuantidade(prod.getQuantidade() + produto.getQuantidade());
         }
         else {
             this.getItens().add(produto);
         }
     }
 
-    void removerProduto(Produto produto) {
+    public void removerProduto(Produto produto) {
         this.getItens().remove(produto);
     }
 
@@ -55,5 +57,13 @@ public class Pedido {
 
     public void setItens(List<Produto> itens) {
         this.itens = itens;
+    }
+
+    public Endereco getEnderecoEntrega() {
+        return enderecoEntrega;
+    }
+
+    public void setEnderecoEntrega(Endereco enderecoEntrega) {
+        this.enderecoEntrega = enderecoEntrega;
     }
 }
